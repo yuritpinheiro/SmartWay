@@ -10,3 +10,4 @@
    - [ ] Alg 1
    - [ ] Alg 2
    - [ ] Gerar Logs
+   - [ ] Gerar caminho para Rute
