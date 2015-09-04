@@ -9,5 +9,5 @@
 2. Algoritmos
    - [ ] Alg 1
    - [ ] Alg 2
-   - [ ] Gerar Logs
+   - [ ] ~~Gerar Log~~
    - [ ] Gerar caminho para Rute
