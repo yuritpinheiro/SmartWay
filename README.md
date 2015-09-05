@@ -7,6 +7,7 @@
    - [ ] Marcar Mapa.
    - [ ] Definir Pesos.
    - [ ] Bloquear e desbloquear botão "Calcular Rota" enquanto faltam parâmetros.
+   - [x] Definir comportamento do checkBox "Mostrar Pesos"
    - [ ] Chamar Algoritmos.
    - [ ] ~~Imprimir Logs.~~
    - [ ] Desenhar rota encontrada.
