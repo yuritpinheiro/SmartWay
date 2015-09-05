@@ -82,10 +82,17 @@ void SmartWay::on_btnDefinirMapa_clicked()
     }
 }
 
-void SmartWay::apagarMapa(){
+void SmartWay::apagarMapa()
+{
 
 }
 
-void SmartWay::criarMapa(){
+void SmartWay::criarMapa()
+{
 
+}
+
+void SmartWay::on_chkPeso_toggled(bool checked)
+{
+    mostrar_pesos = checked;
 }

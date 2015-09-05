@@ -24,6 +24,8 @@ private slots:
 
     void on_btnDefinirMapa_clicked();
 
+    void on_chkPeso_toggled(bool checked);
+
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
@@ -36,7 +38,7 @@ private:
     bool mapa_definido;
     bool partida_definida;
     bool chegada_definida;
-
+    bool mostrar_pesos;
 };
 
 #endif // SMARTWAY_H
