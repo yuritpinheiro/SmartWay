@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagens/shortcut.png</file>
+    </qresource>
+</RCC>

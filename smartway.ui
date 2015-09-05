@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SmartWay</string>
+   <string>Shortcut</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="smartway.qrc">
+    <normaloff>:/imagens/shortcut.png</normaloff>:/imagens/shortcut.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -57,12 +61,6 @@
           <string>Definição de Área</string>
          </property>
          <layout class="QFormLayout" name="formLayout">
-          <property name="labelAlignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-          <property name="formAlignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="lblAltura">
             <property name="text">
@@ -130,6 +128,9 @@
        </item>
        <item>
         <widget class="QRadioButton" name="radioPartida">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Partida</string>
          </property>
@@ -137,6 +138,9 @@
        </item>
        <item>
         <widget class="QRadioButton" name="radioChegada">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Chegada</string>
          </property>
@@ -144,6 +148,9 @@
        </item>
        <item>
         <widget class="QRadioButton" name="radioObstaculos">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Obstáculos</string>
          </property>
@@ -155,12 +162,6 @@
           <string>Definição Pesos</string>
          </property>
          <layout class="QFormLayout" name="formLayout_2">
-          <property name="labelAlignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-          <property name="formAlignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="lblHorizontal">
             <property name="text">
@@ -184,6 +185,9 @@
           </item>
           <item row="2" column="1">
            <widget class="QLineEdit" name="txtPesoDiagonal">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
               <width>50</width>
@@ -194,6 +198,9 @@
           </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="txtPesoHorizontal">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
               <width>50</width>
@@ -204,6 +211,9 @@
           </item>
           <item row="1" column="1">
            <widget class="QLineEdit" name="txtPesoVertical">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
               <width>50</width>
@@ -292,6 +302,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="smartway.qrc"/>
+ </resources>
  <connections/>
 </ui>

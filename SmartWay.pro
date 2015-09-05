@@ -18,3 +18,7 @@ SOURCES += main.cpp\
 HEADERS  += smartway.h
 
 FORMS    += smartway.ui
+
+RESOURCES += \
+    smartway.qrc
+
