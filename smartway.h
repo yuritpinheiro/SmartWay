@@ -22,10 +22,20 @@ private slots:
 
     void on_txtLargura_textEdited();
 
+    void on_btnDefinirMapa_clicked();
+
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
     QDoubleValidator *double_validator;
+
+    void criarMapa();
+    void apagarMapa();
+
+    // Flags
+    bool mapa_definido;
+    bool partida_definida;
+    bool chegada_definida;
 
 };
 
