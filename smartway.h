@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QIntValidator>
 #include <QDoubleValidator>
+#include <QFrame>
+#include <QVector>
 
 namespace Ui {
 class SmartWay;
@@ -36,10 +38,13 @@ private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
     QDoubleValidator *double_validator;
+    QVector<QFrame*> *mapa;
 
-    void criar_mapa();
-    void apagar_mapa();
+    void criar_mapa(int altura, int largura);
+    void apagar_mapa(int altura, int largura);
     bool pronto_calculo();
+
+    int comeco_mapa;
 
     // Flags
     bool mapa_definido;

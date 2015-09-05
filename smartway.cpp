@@ -60,7 +60,7 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(false);
         ui->txtPesoVertical->setEnabled(false);
 
-        SmartWay::apagar_mapa();
+        SmartWay::apagar_mapa(ui->txtAltura->text().toInt(), ui->txtLargura->text().toInt());
     } else {
         mapa_definido = true;
 
@@ -79,7 +79,7 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(true);
         ui->txtPesoVertical->setEnabled(true);
 
-        SmartWay::criar_mapa();
+        SmartWay::criar_mapa(ui->txtAltura->text().toInt(), ui->txtLargura->text().toInt());
     }
 }
 
@@ -103,14 +103,31 @@ void SmartWay::on_txtPesoDiagonal_textEdited()
     ui->btnCalcular->setEnabled(pronto_calculo());
 }
 
-void SmartWay::apagar_mapa()
+void SmartWay::apagar_mapa(int altura, int largura)
 {
-    // A definir
+
 }
 
-void SmartWay::criar_mapa()
+void SmartWay::criar_mapa(int altura, int largura)
 {
-    // A definir
+    mapa = new QVector<QFrame*>(altura*largura);
+    for (int i = 0; i < altura; i++)
+    {
+        for (int j = 0; j < largura; j++)
+        {
+            mapa->insert(i + j, new QFrame());
+            mapa->at(i + j)->setMinimumSize(32,32);
+            mapa->at(i + j)->setMaximumSize(32,32);
+            mapa->at(i + j)->setFrameShape(QFrame::StyledPanel);
+            mapa->at(i + j)->setFrameShadow(QFrame::Raised);
+            ui->gridLayout->addWidget(mapa->at(i + j), i, j, 1, 1, 0);
+        }
+    }
+    QSpacerItem *horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    ui->gridLayout->addItem(horizontalSpacer, 0, largura, 1, 1);
+
+    QSpacerItem *verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    ui->gridLayout->addItem(verticalSpacer_2, altura, 0, 1, 1);
 }
 
 bool SmartWay::pronto_calculo()
