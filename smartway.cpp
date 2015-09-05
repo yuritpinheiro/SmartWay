@@ -59,7 +59,7 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(false);
         ui->txtPesoVertical->setEnabled(false);
 
-        SmartWay::apagarMapa();
+        SmartWay::apagar_mapa();
     } else {
         mapa_definido = true;
 
@@ -78,21 +78,46 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(true);
         ui->txtPesoVertical->setEnabled(true);
 
-        SmartWay::criarMapa();
+        SmartWay::criar_mapa();
     }
-}
-
-void SmartWay::apagarMapa()
-{
-
-}
-
-void SmartWay::criarMapa()
-{
-
 }
 
 void SmartWay::on_chkPeso_toggled(bool checked)
 {
     mostrar_pesos = checked;
+}
+
+void SmartWay::apagar_mapa()
+{
+    // A definir
+}
+
+void SmartWay::criar_mapa()
+{
+    // A definir
+}
+
+bool SmartWay::pronto_calculo()
+{
+    return (partida_definida
+            && chegada_definida
+            && mapa_definido
+            && !ui->txtPesoDiagonal->text().isEmpty()
+            && !ui->txtPesoHorizontal->text().isEmpty()
+            && !ui->txtPesoVertical->text().isEmpty());
+}
+
+void SmartWay::on_txtPesoHorizontal_textEdited()
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
+}
+
+void SmartWay::on_txtPesoVertical_textEdited()
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
+}
+
+void SmartWay::on_txtPesoDiagonal_textEdited()
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
 }

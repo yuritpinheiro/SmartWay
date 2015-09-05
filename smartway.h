@@ -26,13 +26,20 @@ private slots:
 
     void on_chkPeso_toggled(bool checked);
 
+    void on_txtPesoHorizontal_textEdited();
+
+    void on_txtPesoVertical_textEdited();
+
+    void on_txtPesoDiagonal_textEdited();
+
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
     QDoubleValidator *double_validator;
 
-    void criarMapa();
-    void apagarMapa();
+    void criar_mapa();
+    void apagar_mapa();
+    bool pronto_calculo();
 
     // Flags
     bool mapa_definido;
