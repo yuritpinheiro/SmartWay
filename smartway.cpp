@@ -21,6 +21,7 @@ SmartWay::~SmartWay()
 {
     delete ui;
 }
+
 void SmartWay::on_txtAltura_textEdited()
 {
     if(ui->txtAltura->text().isEmpty() || ui->txtLargura->text().isEmpty()){
@@ -87,6 +88,21 @@ void SmartWay::on_chkPeso_toggled(bool checked)
     mostrar_pesos = checked;
 }
 
+void SmartWay::on_txtPesoHorizontal_textEdited()
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
+}
+
+void SmartWay::on_txtPesoVertical_textEdited()
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
+}
+
+void SmartWay::on_txtPesoDiagonal_textEdited()
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
+}
+
 void SmartWay::apagar_mapa()
 {
     // A definir
@@ -105,19 +121,4 @@ bool SmartWay::pronto_calculo()
             && !ui->txtPesoDiagonal->text().isEmpty()
             && !ui->txtPesoHorizontal->text().isEmpty()
             && !ui->txtPesoVertical->text().isEmpty());
-}
-
-void SmartWay::on_txtPesoHorizontal_textEdited()
-{
-    ui->btnCalcular->setEnabled(pronto_calculo());
-}
-
-void SmartWay::on_txtPesoVertical_textEdited()
-{
-    ui->btnCalcular->setEnabled(pronto_calculo());
-}
-
-void SmartWay::on_txtPesoDiagonal_textEdited()
-{
-    ui->btnCalcular->setEnabled(pronto_calculo());
 }

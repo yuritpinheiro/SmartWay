@@ -260,6 +260,9 @@
     </item>
     <item>
      <widget class="QScrollArea" name="scrollMapa">
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
@@ -302,6 +305,20 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>txtAltura</tabstop>
+  <tabstop>txtLargura</tabstop>
+  <tabstop>btnDefinirMapa</tabstop>
+  <tabstop>radioPartida</tabstop>
+  <tabstop>radioChegada</tabstop>
+  <tabstop>radioObstaculos</tabstop>
+  <tabstop>txtPesoHorizontal</tabstop>
+  <tabstop>txtPesoVertical</tabstop>
+  <tabstop>txtPesoDiagonal</tabstop>
+  <tabstop>chkPeso</tabstop>
+  <tabstop>btnCalcular</tabstop>
+  <tabstop>scrollMapa</tabstop>
+ </tabstops>
  <resources>
   <include location="smartway.qrc"/>
  </resources>
