@@ -122,7 +122,7 @@
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Confirmar Área</string>
+          <string>Definir Área</string>
          </property>
         </widget>
        </item>

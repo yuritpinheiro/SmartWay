@@ -4,9 +4,10 @@
 #include <QMainWindow>
 #include <QIntValidator>
 #include <QDoubleValidator>
-#include <QFrame>
 #include <QVector>
 #include <QSpacerItem>
+#include <QPushButton>
+#include <QSignalMapper>
 
 namespace Ui {
 class SmartWay;
@@ -35,13 +36,15 @@ private slots:
 
     void on_txtPesoDiagonal_textEdited();
 
-    //void on_celMapa_clicked(QFrame* celula);
+    void on_celMapa_clicked(int celula);
 
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
     QDoubleValidator *double_validator;
-    QVector<QFrame*> *mapa;
+    QVector<QPushButton*> *mapa;
+
+    QSignalMapper *mapa_sinais;
 
     QSpacerItem *horizontalSpacer;
     QSpacerItem *verticalSpacer_2;
@@ -50,7 +53,8 @@ private:
     void apagar_mapa();
     bool pronto_calculo();
 
-    int comeco_mapa;
+    int partida;
+    int chegada;
 
     // Flags
     bool mapa_definido;

@@ -15,6 +15,10 @@ SmartWay::SmartWay(QWidget *parent) :
     ui->txtPesoHorizontal->setValidator(double_validator);
     ui->txtPesoVertical->setValidator(double_validator);
 
+    mapa_definido = false;
+    partida_definida = false;
+    chegada_definida = false;
+    mostrar_pesos = false;
 }
 
 SmartWay::~SmartWay()
@@ -103,6 +107,61 @@ void SmartWay::on_txtPesoDiagonal_textEdited()
     ui->btnCalcular->setEnabled(pronto_calculo());
 }
 
+void SmartWay::on_celMapa_clicked(int celula)
+{
+    //mapa->at(celula)->setIcon();
+    if (ui->radioPartida->isChecked())
+    {
+        //ui->radioPartida->setChecked(false);
+        if (!partida_definida)
+        {
+            mapa->at(celula)->setText("P");
+            partida_definida = true;
+            partida = celula;
+            ui->btnCalcular->setEnabled(pronto_calculo());
+        }
+//        else if (celula == partida)
+//        {
+//            mapa->at(celula)->setText("");
+//            partida_definida = false;
+//            partida = -1;
+//        }
+    }
+
+    if (ui->radioChegada->isChecked())
+    {
+        //ui->radioPartida->setChecked(false);
+        if (!chegada_definida)
+        {
+            mapa->at(celula)->setText("C");
+            chegada_definida = true;
+            chegada = celula;
+            ui->btnCalcular->setEnabled(pronto_calculo());
+        }
+//        else if (celula == partida)
+//        {
+//            mapa->at(celula)->setText("");
+//            partida_definida = false;
+//            partida = -1;
+//        }
+    }
+
+    if (ui->radioObstaculos->isChecked())
+    {
+        //ui->radioPartida->setChecked(false);
+        mapa->at(celula)->setText("O");
+        partida_definida = true;
+        partida = celula;
+        ui->btnCalcular->setEnabled(pronto_calculo());
+//        else if (celula == partida)
+//        {
+//            mapa->at(celula)->setText("");
+//            partida_definida = false;
+//            partida = -1;
+//        }
+    }
+}
+
 void SmartWay::apagar_mapa()
 {
     QLayoutItem *child;
@@ -118,17 +177,24 @@ void SmartWay::apagar_mapa()
 
 void SmartWay::criar_mapa(int altura, int largura)
 {
-    mapa = new QVector<QFrame*>(altura*largura);
+    mapa = new QVector<QPushButton*>(altura*largura);
+    mapa_sinais = new QSignalMapper(this);
     for (int i = 0; i < altura; i++)
     {
         for (int j = 0; j < largura; j++)
         {
-            mapa->insert(i + j, new QFrame());
-            mapa->at(i + j)->setMinimumSize(48,48);
-            mapa->at(i + j)->setMaximumSize(48,48);
-            mapa->at(i + j)->setFrameShape(QFrame::StyledPanel);
-            mapa->at(i + j)->setFrameShadow(QFrame::Raised);
-            ui->gridLayout->addWidget(mapa->at(i + j), i, j, 1, 1, 0);
+            int k = i + (j * largura);
+            mapa->replace(k, new QPushButton());
+            mapa->at(k)->setMinimumSize(48,48);
+            mapa->at(k)->setMaximumSize(48,48);
+
+            mapa_sinais->setMapping(mapa->at(k), k);
+
+            connect(mapa->at(k), SIGNAL(clicked()), mapa_sinais, SLOT(map()));
+
+            connect(mapa_sinais, SIGNAL(mapped(int)), this, SLOT(on_celMapa_clicked(int)));
+
+            ui->gridLayout->addWidget(mapa->at(k), i, j, 1, 1, 0);
         }
     }
     horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
