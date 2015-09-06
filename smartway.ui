@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="smartway.qrc">
-    <normaloff>:/imagens/shortcut.png</normaloff>:/imagens/shortcut.png</iconset>
+    <normaloff>:/imagens/shortcut_2.png</normaloff>:/imagens/shortcut_2.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">

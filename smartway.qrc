@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>imagens/shortcut.png</file>
+        <file>imagens/arvore_1.png</file>
+        <file>imagens/arvore_2.png</file>
+        <file>imagens/pedra.png</file>
+        <file>imagens/chegada_1.png</file>
+        <file>imagens/chegada_2.png</file>
+        <file>imagens/largada_1.png</file>
+        <file>imagens/largada_2.png</file>
+        <file>imagens/passada_1.png</file>
+        <file>imagens/shortcut_2.png</file>
     </qresource>
 </RCC>

@@ -112,50 +112,29 @@ void SmartWay::on_celMapa_clicked(int celula)
     //mapa->at(celula)->setIcon();
     if (ui->radioPartida->isChecked())
     {
-        //ui->radioPartida->setChecked(false);
         if (!partida_definida)
         {
             mapa->at(celula)->setText("P");
             partida_definida = true;
             partida = celula;
         }
-//        else if (celula == partida)
-//        {
-//            mapa->at(celula)->setText("");
-//            partida_definida = false;
-//            partida = -1;
-//        }
     }
 
     if (ui->radioChegada->isChecked())
     {
-        //ui->radioPartida->setChecked(false);
         if (!chegada_definida)
         {
             mapa->at(celula)->setText("C");
             chegada_definida = true;
             chegada = celula;
         }
-//        else if (celula == partida)
-//        {
-//            mapa->at(celula)->setText("");
-//            partida_definida = false;
-//            partida = -1;
-//        }
     }
 
     if (ui->radioObstaculos->isChecked())
     {
-        //ui->radioPartida->setChecked(false);
         mapa->at(celula)->setText("O");
         partida_definida = true;
         partida = celula;
-//        else if (celula == partida)
-//        {
-//            mapa->at(celula)->setText("");
-//            partida_definida = false;
-//            partida = -1;
-//        }
     }
     ui->btnCalcular->setEnabled(pronto_calculo());
 }
