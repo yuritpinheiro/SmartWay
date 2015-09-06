@@ -116,8 +116,8 @@ void SmartWay::criar_mapa(int altura, int largura)
         for (int j = 0; j < largura; j++)
         {
             mapa->insert(i + j, new QFrame());
-            mapa->at(i + j)->setMinimumSize(32,32);
-            mapa->at(i + j)->setMaximumSize(32,32);
+            mapa->at(i + j)->setMinimumSize(48,48);
+            mapa->at(i + j)->setMaximumSize(48,48);
             mapa->at(i + j)->setFrameShape(QFrame::StyledPanel);
             mapa->at(i + j)->setFrameShadow(QFrame::Raised);
             ui->gridLayout->addWidget(mapa->at(i + j), i, j, 1, 1, 0);
