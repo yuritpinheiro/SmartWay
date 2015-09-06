@@ -68,23 +68,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="lblLargura">
-            <property name="text">
-             <string>Largura:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="txtLargura">
-            <property name="maximumSize">
-             <size>
-              <width>50</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="txtAltura">
             <property name="sizePolicy">
@@ -109,6 +92,23 @@
              <size>
               <width>0</width>
               <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lblLargura">
+            <property name="text">
+             <string>Largura:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="txtLargura">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
              </size>
             </property>
            </widget>
@@ -259,49 +259,37 @@
      </widget>
     </item>
     <item>
-     <widget class="QScrollArea" name="scrollMapa">
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
+     <widget class="QTableWidget" name="tabelaMapa">
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
       </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+      <property name="iconSize">
+       <size>
+        <width>41</width>
+        <height>41</height>
+       </size>
       </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-      <widget class="QWidget" name="scrollCelulas">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>581</width>
-         <height>567</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout">
-        <property name="leftMargin">
-         <number>2</number>
-        </property>
-        <property name="topMargin">
-         <number>2</number>
-        </property>
-        <property name="rightMargin">
-         <number>2</number>
-        </property>
-        <property name="bottomMargin">
-         <number>2</number>
-        </property>
-        <property name="spacing">
-         <number>2</number>
-        </property>
-       </layout>
-      </widget>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>48</number>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>48</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>48</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>48</number>
+      </attribute>
      </widget>
     </item>
    </layout>
@@ -320,7 +308,6 @@
   <tabstop>txtPesoDiagonal</tabstop>
   <tabstop>chkPeso</tabstop>
   <tabstop>btnCalcular</tabstop>
-  <tabstop>scrollMapa</tabstop>
  </tabstops>
  <resources>
   <include location="smartway.qrc"/>

@@ -8,6 +8,7 @@
 #include <QSpacerItem>
 #include <QPushButton>
 #include <QSignalMapper>
+#include <QTableWidgetItem>
 
 namespace Ui {
 class SmartWay;
@@ -36,7 +37,7 @@ private slots:
 
     void on_txtPesoDiagonal_textEdited();
 
-    void on_celMapa_clicked(int celula);
+    void on_tabelaMapa_itemClicked(QTableWidgetItem *item);
 
 private:
     Ui::SmartWay *ui;
@@ -52,9 +53,12 @@ private:
     void criar_mapa(int altura, int largura);
     void apagar_mapa();
     bool pronto_calculo();
+    bool isPartida(QTableWidgetItem *item);
+    bool isChegada(QTableWidgetItem *item);
+    bool isObstaculo(QTableWidgetItem *item);
 
-    int partida;
-    int chegada;
+    int partida_x, partida_y;
+    int chegada_x, chegada_y;
 
     // Flags
     bool mapa_definido;

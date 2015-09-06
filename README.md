@@ -6,7 +6,7 @@
    - [x] Definir Mapa.
    - [x] Redefinir Mapa.
    - [x] Marcar Mapa.
-   - [ ] Desmarcar mapa.
+   - [x] Desmarcar mapa.
    - [x] Bloquear e desbloquear botão "Calcular Rota" enquanto faltam parâmetros.
    - [x] Definir comportamento do checkBox "Mostrar Pesos"
    - [ ] Chamar Algoritmos.

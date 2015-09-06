@@ -64,6 +64,12 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(false);
         ui->txtPesoVertical->setEnabled(false);
 
+        partida_x = -1; partida_y = -1;
+        partida_definida = false;
+
+        chegada_x = -1; chegada_y = -1;
+        chegada_definida = false;
+
         SmartWay::apagar_mapa();
     } else {
         mapa_definido = true;
@@ -107,78 +113,25 @@ void SmartWay::on_txtPesoDiagonal_textEdited()
     ui->btnCalcular->setEnabled(pronto_calculo());
 }
 
-void SmartWay::on_celMapa_clicked(int celula)
-{
-    //mapa->at(celula)->setIcon();
-    if (ui->radioPartida->isChecked())
-    {
-        if (!partida_definida)
-        {
-            mapa->at(celula)->setText("P");
-            partida_definida = true;
-            partida = celula;
-        }
-    }
-
-    if (ui->radioChegada->isChecked())
-    {
-        if (!chegada_definida)
-        {
-            mapa->at(celula)->setText("C");
-            chegada_definida = true;
-            chegada = celula;
-        }
-    }
-
-    if (ui->radioObstaculos->isChecked())
-    {
-        mapa->at(celula)->setText("O");
-        partida_definida = true;
-        partida = celula;
-    }
-    ui->btnCalcular->setEnabled(pronto_calculo());
-}
-
 void SmartWay::apagar_mapa()
 {
-    QLayoutItem *child;
-    while ((child = ui->gridLayout->takeAt(0)) != 0)
-    {
-        if (child->widget())
-            child->widget()->setParent(NULL);
-        ui->gridLayout->removeItem(child);
-
-        delete child;
-    }
+    ui->tabelaMapa->setRowCount(0);
+    ui->tabelaMapa->setColumnCount(0);
 }
 
 void SmartWay::criar_mapa(int altura, int largura)
 {
-    mapa = new QVector<QPushButton*>(altura*largura);
-    mapa_sinais = new QSignalMapper(this);
+    ui->tabelaMapa->setRowCount(altura);
+    ui->tabelaMapa->setColumnCount(largura);
+    QTableWidgetItem *item;
     for (int i = 0; i < altura; i++)
     {
         for (int j = 0; j < largura; j++)
         {
-            int k = i + (j * largura);
-            mapa->replace(k, new QPushButton());
-            mapa->at(k)->setMinimumSize(48,48);
-            mapa->at(k)->setMaximumSize(48,48);
-
-            mapa_sinais->setMapping(mapa->at(k), k);
-
-            connect(mapa->at(k), SIGNAL(clicked()), mapa_sinais, SLOT(map()));
-
-            connect(mapa_sinais, SIGNAL(mapped(int)), this, SLOT(on_celMapa_clicked(int)));
-
-            ui->gridLayout->addWidget(mapa->at(k), i, j, 1, 1, 0);
+            item = new QTableWidgetItem();
+            ui->tabelaMapa->setItem(i, j, item);
         }
     }
-    horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    ui->gridLayout->addItem(horizontalSpacer, 0, largura, 1, 1);
-
-    verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    ui->gridLayout->addItem(verticalSpacer_2, altura, 0, 1, 1);
 }
 
 bool SmartWay::pronto_calculo()
@@ -189,4 +142,74 @@ bool SmartWay::pronto_calculo()
             && !ui->txtPesoDiagonal->text().isEmpty()
             && !ui->txtPesoHorizontal->text().isEmpty()
             && !ui->txtPesoVertical->text().isEmpty());
+}
+
+void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
+{
+    QIcon icon;
+
+    if (isPartida(item))
+    {
+        if (ui->radioPartida->isChecked())
+        {
+            partida_x = -1; partida_y = -1;
+            icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
+            partida_definida = false;
+            item->setIcon(icon);
+        }
+    }
+    else if (isChegada(item))
+    {
+        if (ui->radioChegada->isChecked())
+        {
+            chegada_x = -1; chegada_y = -1;
+            icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
+            chegada_definida = false;
+            item->setIcon(icon);
+        }
+    }
+    else if (isObstaculo(item))
+    {
+        icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
+        item->setIcon(icon);
+    }
+    else
+    {
+        if (ui->radioPartida->isChecked() && !partida_definida)
+        {
+            partida_x = item->column(); partida_y = item->row();
+            icon.addFile(QStringLiteral(":/imagens/largada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
+            partida_definida = true;
+            item->setIcon(icon);
+        }
+        else if (ui->radioChegada->isChecked() && !chegada_definida)
+        {
+            chegada_x = item->column(); chegada_y = item->row();
+            icon.addFile(QStringLiteral(":/imagens/chegada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
+            chegada_definida = true;
+            item->setIcon(icon);
+        }
+        else if (ui->radioObstaculos->isChecked())
+        {
+            icon.addFile(QStringLiteral(":/imagens/pedra.png"), QSize(), QIcon::Normal, QIcon::Off);
+            item->setIcon(icon);
+        }
+    }
+}
+
+
+
+bool SmartWay::isPartida(QTableWidgetItem *item)
+{
+    return (partida_x == item->column() && partida_y == item->row()) ? true : false;
+}
+
+bool SmartWay::isChegada(QTableWidgetItem *item)
+{
+    return (chegada_x == item->column() && chegada_y == item->row()) ? true : false;
+}
+
+bool SmartWay::isObstaculo(QTableWidgetItem *item)
+{
+    return rand()%2;
 }
