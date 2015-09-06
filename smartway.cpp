@@ -118,7 +118,6 @@ void SmartWay::on_celMapa_clicked(int celula)
             mapa->at(celula)->setText("P");
             partida_definida = true;
             partida = celula;
-            ui->btnCalcular->setEnabled(pronto_calculo());
         }
 //        else if (celula == partida)
 //        {
@@ -136,7 +135,6 @@ void SmartWay::on_celMapa_clicked(int celula)
             mapa->at(celula)->setText("C");
             chegada_definida = true;
             chegada = celula;
-            ui->btnCalcular->setEnabled(pronto_calculo());
         }
 //        else if (celula == partida)
 //        {
@@ -152,7 +150,6 @@ void SmartWay::on_celMapa_clicked(int celula)
         mapa->at(celula)->setText("O");
         partida_definida = true;
         partida = celula;
-        ui->btnCalcular->setEnabled(pronto_calculo());
 //        else if (celula == partida)
 //        {
 //            mapa->at(celula)->setText("");
@@ -160,6 +157,7 @@ void SmartWay::on_celMapa_clicked(int celula)
 //            partida = -1;
 //        }
     }
+    ui->btnCalcular->setEnabled(pronto_calculo());
 }
 
 void SmartWay::apagar_mapa()
