@@ -60,7 +60,7 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(false);
         ui->txtPesoVertical->setEnabled(false);
 
-        SmartWay::apagar_mapa(ui->txtAltura->text().toInt(), ui->txtLargura->text().toInt());
+        SmartWay::apagar_mapa();
     } else {
         mapa_definido = true;
 
@@ -103,9 +103,17 @@ void SmartWay::on_txtPesoDiagonal_textEdited()
     ui->btnCalcular->setEnabled(pronto_calculo());
 }
 
-void SmartWay::apagar_mapa(int altura, int largura)
+void SmartWay::apagar_mapa()
 {
+    QLayoutItem *child;
+    while ((child = ui->gridLayout->takeAt(0)) != 0)
+    {
+        if (child->widget())
+            child->widget()->setParent(NULL);
+        ui->gridLayout->removeItem(child);
 
+        delete child;
+    }
 }
 
 void SmartWay::criar_mapa(int altura, int largura)
@@ -123,10 +131,10 @@ void SmartWay::criar_mapa(int altura, int largura)
             ui->gridLayout->addWidget(mapa->at(i + j), i, j, 1, 1, 0);
         }
     }
-    QSpacerItem *horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     ui->gridLayout->addItem(horizontalSpacer, 0, largura, 1, 1);
 
-    QSpacerItem *verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
     ui->gridLayout->addItem(verticalSpacer_2, altura, 0, 1, 1);
 }
 

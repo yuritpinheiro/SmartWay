@@ -6,6 +6,7 @@
 #include <QDoubleValidator>
 #include <QFrame>
 #include <QVector>
+#include <QSpacerItem>
 
 namespace Ui {
 class SmartWay;
@@ -34,14 +35,19 @@ private slots:
 
     void on_txtPesoDiagonal_textEdited();
 
+    //void on_celMapa_clicked(QFrame* celula);
+
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
     QDoubleValidator *double_validator;
     QVector<QFrame*> *mapa;
 
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer_2;
+
     void criar_mapa(int altura, int largura);
-    void apagar_mapa(int altura, int largura);
+    void apagar_mapa();
     bool pronto_calculo();
 
     int comeco_mapa;
