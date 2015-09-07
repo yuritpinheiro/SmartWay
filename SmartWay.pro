@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        smartway.cpp
+        smartway.cpp \
+    celula.cpp
 
-HEADERS  += smartway.h
+HEADERS  += smartway.h \
+    celula.h
 
 FORMS    += smartway.ui
 

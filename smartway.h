@@ -9,6 +9,8 @@
 #include <QPushButton>
 #include <QSignalMapper>
 #include <QTableWidgetItem>
+#include <celula.h>
+#include <QGenericMatrix>
 
 namespace Ui {
 class SmartWay;
@@ -43,7 +45,6 @@ private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
     QDoubleValidator *double_validator;
-    QVector<QPushButton*> *mapa;
 
     QSignalMapper *mapa_sinais;
 
@@ -51,7 +52,7 @@ private:
     QSpacerItem *verticalSpacer_2;
 
     void criar_mapa(int altura, int largura);
-    void apagar_mapa();
+    void apagar_mapa(int altura);
     bool pronto_calculo();
     bool isPartida(QTableWidgetItem *item);
     bool isChegada(QTableWidgetItem *item);
@@ -59,6 +60,8 @@ private:
 
     int partida_x, partida_y;
     int chegada_x, chegada_y;
+
+    /*QVector<QVector<Celula> >*/ Celula ** mapa;
 
     // Flags
     bool mapa_definido;
