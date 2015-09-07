@@ -165,7 +165,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
         else if (ui->radioObstaculos->isChecked())
         {
             mapa[item->row()][item->column()].setTipo(OBSTACULO);
-            icon.addFile(QStringLiteral(":/imagens/pedra.png"), QSize(), QIcon::Normal, QIcon::Off);
+            icon.addFile(QStringLiteral(":/imagens/obs_2.png"), QSize(), QIcon::Normal, QIcon::Off);
             item->setIcon(icon);
         }
     }
