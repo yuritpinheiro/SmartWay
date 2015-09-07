@@ -165,7 +165,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
         else if (ui->radioObstaculos->isChecked())
         {
             mapa[item->row()][item->column()].setTipo(OBSTACULO);
-            icon.addFile(QStringLiteral(":/imagens/obs_2.png"), QSize(), QIcon::Normal, QIcon::Off);
+            icon.addFile(getObstaculo(), QSize(), QIcon::Normal, QIcon::Off);
             item->setIcon(icon);
         }
     }
@@ -226,4 +226,39 @@ bool SmartWay::isChegada(QTableWidgetItem *item)
 bool SmartWay::isObstaculo(QTableWidgetItem *item)
 {
     return mapa[item->row()][item->column()].getTipo() == OBSTACULO ? true : false;
+}
+
+QString SmartWay::getObstaculo()
+{
+    int i = rand() % 8;
+    switch (i) {
+    case 0:
+        return QStringLiteral(":/imagens/obs_1.png");
+        break;
+    case 1:
+        return QStringLiteral(":/imagens/obs_2.png");
+        break;
+    case 2:
+        return QStringLiteral(":/imagens/obs_3.png");
+        break;
+    case 3:
+        return QStringLiteral(":/imagens/obs_4.png");
+        break;
+    case 4:
+        return QStringLiteral(":/imagens/obs_5.png");
+        break;
+    case 5:
+        return QStringLiteral(":/imagens/obs_6.png");
+        break;
+    case 6:
+        return QStringLiteral(":/imagens/obs_7.png");
+        break;
+    case 7:
+        return QStringLiteral(":/imagens/obs_8.png");
+        break;
+
+    default:
+        return QStringLiteral(":");
+        break;
+    }
 }

@@ -11,6 +11,7 @@
 #include <QTableWidgetItem>
 #include <celula.h>
 #include <QGenericMatrix>
+#include <QString>
 
 namespace Ui {
 class SmartWay;
@@ -58,10 +59,12 @@ private:
     bool isChegada(QTableWidgetItem *item);
     bool isObstaculo(QTableWidgetItem *item);
 
+    QString getObstaculo();
+
     int partida_x, partida_y;
     int chegada_x, chegada_y;
 
-    /*QVector<QVector<Celula> >*/ Celula ** mapa;
+    Celula ** mapa;
 
     // Flags
     bool mapa_definido;
