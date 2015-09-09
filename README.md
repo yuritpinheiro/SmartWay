@@ -13,8 +13,9 @@
    - [ ] Chamar Algoritmos.
    - [ ] ~~Imprimir Logs.~~
    - [ ] Desenhar rota encontrada.
+   
 2. Algoritmos
-   - [ ] Alg 1.
-   - [ ] Alg 2.
+   - [ ] Algoritmo A*.
+   - [ ] Busca em profundidade.
    - [ ] ~~Gerar Log.~~
    - [ ] Gerar caminho para Rute.
