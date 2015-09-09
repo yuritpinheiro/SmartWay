@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     celula.cpp
 
 HEADERS  += smartway.h \
-    celula.h
+    celula.h \
+    algoritmos_busca.h
 
 FORMS    += smartway.ui
 
