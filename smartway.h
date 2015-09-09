@@ -42,6 +42,8 @@ private slots:
 
     void on_tabelaMapa_itemClicked(QTableWidgetItem *item);
 
+    void on_comboAlgoritmo_currentIndexChanged(int index);
+
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;

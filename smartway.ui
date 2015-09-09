@@ -233,6 +233,33 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="lblAlgoritmo">
+         <property name="text">
+          <string>Selecione o algoritmo:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboAlgoritmo">
+         <property name="currentText">
+          <string/>
+         </property>
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>A*</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Busca em Profundidade</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="btnCalcular">
          <property name="enabled">
           <bool>false</bool>
@@ -306,7 +333,6 @@
   <tabstop>txtPesoHorizontal</tabstop>
   <tabstop>txtPesoVertical</tabstop>
   <tabstop>txtPesoDiagonal</tabstop>
-  <tabstop>chkPeso</tabstop>
   <tabstop>btnCalcular</tabstop>
  </tabstops>
  <resources>

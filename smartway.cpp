@@ -172,6 +172,11 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     ui->btnCalcular->setEnabled(pronto_calculo());
 }
 
+void SmartWay::on_comboAlgoritmo_currentIndexChanged(int index)
+{
+    ui->btnCalcular->setEnabled(pronto_calculo());
+}
+
 void SmartWay::apagar_mapa(int altura)
 {
     ui->tabelaMapa->setRowCount(0);
@@ -210,7 +215,8 @@ bool SmartWay::pronto_calculo()
             && mapa_definido
             && !ui->txtPesoDiagonal->text().isEmpty()
             && !ui->txtPesoHorizontal->text().isEmpty()
-            && !ui->txtPesoVertical->text().isEmpty());
+            && !ui->txtPesoVertical->text().isEmpty()
+            && ui->comboAlgoritmo->currentIndex() != -1);
 }
 
 bool SmartWay::isPartida(QTableWidgetItem *item)
@@ -256,7 +262,6 @@ QString SmartWay::getObstaculo()
     case 7:
         return QStringLiteral(":/imagens/obs_8.png");
         break;
-
     default:
         return QStringLiteral(":");
         break;
