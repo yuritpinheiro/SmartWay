@@ -66,6 +66,7 @@ private:
     int partida_x, partida_y;
     int chegada_x, chegada_y;
 
+
     Celula ** mapa;
 
     // Flags
@@ -73,6 +74,8 @@ private:
     bool partida_definida;
     bool chegada_definida;
     bool mostrar_pesos;
+
+    int alg_select;
 };
 
 #endif // SMARTWAY_H

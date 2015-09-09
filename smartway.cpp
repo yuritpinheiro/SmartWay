@@ -121,7 +121,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioPartida->isChecked())
         {
-            mapa[item->row()][item->column()].setTipo(LIVRE);
+            mapa[item->row()][item->column()].set_tipo(LIVRE);
             icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
             partida_definida = false;
             item->setIcon(icon);
@@ -131,7 +131,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioChegada->isChecked())
         {
-            mapa[item->row()][item->column()].setTipo(LIVRE);
+            mapa[item->row()][item->column()].set_tipo(LIVRE);
             icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
             chegada_definida = false;
             item->setIcon(icon);
@@ -141,7 +141,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioObstaculos->isChecked())
         {
-            mapa[item->row()][item->column()].setTipo(LIVRE);
+            mapa[item->row()][item->column()].set_tipo(LIVRE);
             icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
             item->setIcon(icon);
         }
@@ -150,21 +150,21 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioPartida->isChecked() && !partida_definida)
         {
-            mapa[item->row()][item->column()].setTipo(PARTIDA);
+            mapa[item->row()][item->column()].set_tipo(PARTIDA);
             icon.addFile(QStringLiteral(":/imagens/largada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
             partida_definida = true;
             item->setIcon(icon);
         }
         else if (ui->radioChegada->isChecked() && !chegada_definida)
         {
-            mapa[item->row()][item->column()].setTipo(CHEGADA);
+            mapa[item->row()][item->column()].set_tipo(CHEGADA);
             icon.addFile(QStringLiteral(":/imagens/chegada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
             chegada_definida = true;
             item->setIcon(icon);
         }
         else if (ui->radioObstaculos->isChecked())
         {
-            mapa[item->row()][item->column()].setTipo(OBSTACULO);
+            mapa[item->row()][item->column()].set_tipo(OBSTACULO);
             icon.addFile(getObstaculo(), QSize(), QIcon::Normal, QIcon::Off);
             item->setIcon(icon);
         }
@@ -175,6 +175,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
 void SmartWay::on_comboAlgoritmo_currentIndexChanged(int index)
 {
     ui->btnCalcular->setEnabled(pronto_calculo());
+    alg_select = index;
 }
 
 void SmartWay::apagar_mapa(int altura)
@@ -221,17 +222,17 @@ bool SmartWay::pronto_calculo()
 
 bool SmartWay::isPartida(QTableWidgetItem *item)
 {
-    return mapa[item->row()][item->column()].getTipo() == PARTIDA ? true : false;;
+    return mapa[item->row()][item->column()].get_tipo() == PARTIDA ? true : false;;
 }
 
 bool SmartWay::isChegada(QTableWidgetItem *item)
 {
-    return mapa[item->row()][item->column()].getTipo() == CHEGADA ? true : false;
+    return mapa[item->row()][item->column()].get_tipo() == CHEGADA ? true : false;
 }
 
 bool SmartWay::isObstaculo(QTableWidgetItem *item)
 {
-    return mapa[item->row()][item->column()].getTipo() == OBSTACULO ? true : false;
+    return mapa[item->row()][item->column()].get_tipo() == OBSTACULO ? true : false;
 }
 
 QString SmartWay::getObstaculo()
