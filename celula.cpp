@@ -50,3 +50,14 @@ void Celula::setTipo(int tipo)
 {
     this->tipo = tipo;
 }
+
+
+Celula * Celula::getPai()
+{
+    return this->pai;
+}
+
+void Celula::setPai(Celula * pai)
+{
+    this->pai = pai;
+}

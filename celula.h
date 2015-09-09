@@ -22,9 +22,13 @@ public:
     int getTipo();
     void setTipo(int tipo);
 
+    Celula *getPai();
+    void setPai(Celula *pai);
+
 private:
     int f, g, h;
     int tipo;
+    Celula *pai;
 };
 
 #endif // CELULA_H
