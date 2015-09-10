@@ -237,7 +237,7 @@ bool SmartWay::isObstaculo(QTableWidgetItem *item)
 
 QString SmartWay::getObstaculo()
 {
-    int i = rand() % 8;
+    int i = rand() % 9;
     switch (i) {
     case 0:
         return QStringLiteral(":/imagens/obs_1.png");
@@ -262,6 +262,9 @@ QString SmartWay::getObstaculo()
         break;
     case 7:
         return QStringLiteral(":/imagens/obs_8.png");
+        break;
+    case 8:
+        return QStringLiteral(":/imagens/obs_9.png");
         break;
     default:
         return QStringLiteral(":");
