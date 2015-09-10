@@ -10,7 +10,10 @@
 
 /* Busca em profundidade */
 
+void busca_profundidade(Celula *partida, Celula *chegada)
+{
 
+}
 
 /* --------------------- */
 
