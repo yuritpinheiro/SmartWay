@@ -1,5 +1,7 @@
 #include "smartway.h"
 #include "ui_smartway.h"
+#include <float.h>
+#include <algoritmos_busca.h>
 
 SmartWay::SmartWay(QWidget *parent) :
     QMainWindow(parent),
@@ -121,6 +123,9 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioPartida->isChecked())
         {
+            partida->set_p_pai(nullptr);
+            partida->set_pai(nullptr);
+            partida = nullptr;
             mapa[item->row()][item->column()].set_tipo(LIVRE);
             icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
             partida_definida = false;
@@ -131,6 +136,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioChegada->isChecked())
         {
+            chegada = nullptr;
             mapa[item->row()][item->column()].set_tipo(LIVRE);
             icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
             chegada_definida = false;
@@ -150,6 +156,9 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
     {
         if (ui->radioPartida->isChecked() && !partida_definida)
         {
+            partida = &mapa[item->row()][item->column()];
+            partida->set_p_pai(partida);
+            partida->set_pai(partida);
             mapa[item->row()][item->column()].set_tipo(PARTIDA);
             icon.addFile(QStringLiteral(":/imagens/largada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
             partida_definida = true;
@@ -157,6 +166,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
         }
         else if (ui->radioChegada->isChecked() && !chegada_definida)
         {
+            chegada = &mapa[item->row()][item->column()];
             mapa[item->row()][item->column()].set_tipo(CHEGADA);
             icon.addFile(QStringLiteral(":/imagens/chegada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
             chegada_definida = true;
@@ -176,6 +186,17 @@ void SmartWay::on_comboAlgoritmo_currentIndexChanged(int index)
 {
     ui->btnCalcular->setEnabled(pronto_calculo());
     alg_select = index;
+}
+
+void SmartWay::on_btnCalcular_clicked()
+{
+    chegada->set_h(DBL_MAX);
+    if (ui->comboAlgoritmo->currentIndex() == 1){
+        busca_profundidade(partida, chegada,
+                           ui->txtPesoVertical->text().toDouble(),
+                           ui->txtPesoHorizontal->text().toDouble(),
+                           ui->txtPesoDiagonal->text().toDouble());
+    }
 }
 
 void SmartWay::apagar_mapa(int altura)
@@ -216,22 +237,45 @@ void SmartWay::criar_mapa(int altura, int largura)
             mapa[i][j].set_tipo(LIVRE);
             mapa[i][j].set_p_pai(nullptr);
             mapa[i][j].set_pai(nullptr);
-            if (i-1 > 0)
+            if (i-1 >= 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][ j ], 0);
-            if (i-1 > 0 && j+1 < largura)
+            else
+                mapa[i][j].set_vizinho(nullptr, 0);
+
+            if (i-1 >= 0 && j+1 < largura)
                 mapa[i][j].set_vizinho(&mapa[i-1][j+1], 1);
+            else
+                mapa[i][j].set_vizinho(nullptr, 1);
+
             if (j+1 < largura)
                 mapa[i][j].set_vizinho(&mapa[ i ][j+1], 2);
+            else
+                mapa[i][j].set_vizinho(nullptr, 2);
+
             if (i+1 < altura && j+1 < largura)
                 mapa[i][j].set_vizinho(&mapa[i+1][j+1], 3);
+            else
+                mapa[i][j].set_vizinho(nullptr, 3);
+
             if (i+1 < altura)
                 mapa[i][j].set_vizinho(&mapa[i+1][ j ], 4);
-            if (i+1 < altura && j-1 > 0)
+            else
+                mapa[i][j].set_vizinho(nullptr, 4);
+
+            if (i+1 < altura && j-1 >= 0)
                 mapa[i][j].set_vizinho(&mapa[i+1][j-1], 5);
-            if (j-1 > 0)
+            else
+                mapa[i][j].set_vizinho(nullptr, 5);
+
+            if (j-1 >= 0)
                 mapa[i][j].set_vizinho(&mapa[ i ][j-1], 6);
-            if (i-1 > 0 && j-1 > 0)
+            else
+                mapa[i][j].set_vizinho(nullptr, 6);
+
+            if (i-1 >= 0 && j-1 >= 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][j-1], 7);
+            else
+                mapa[i][j].set_vizinho(nullptr, 7);
         }
     }
 }
