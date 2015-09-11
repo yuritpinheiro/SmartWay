@@ -241,9 +241,6 @@
        </item>
        <item>
         <widget class="QComboBox" name="comboAlgoritmo">
-         <property name="currentText">
-          <string/>
-         </property>
          <property name="currentIndex">
           <number>-1</number>
          </property>
