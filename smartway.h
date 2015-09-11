@@ -44,6 +44,8 @@ private slots:
 
     void on_comboAlgoritmo_currentIndexChanged(int index);
 
+    void on_btnCalcular_clicked();
+
 private:
     Ui::SmartWay *ui;
     QIntValidator *int_validator;
@@ -68,6 +70,8 @@ private:
 
 
     Celula ** mapa;
+
+    Celula *partida, *chegada;
 
     // Flags
     bool mapa_definido;
