@@ -214,8 +214,8 @@ void SmartWay::criar_mapa(int altura, int largura)
         for (int j = 0; j < largura; j++)
         {
             mapa[i][j].set_tipo(LIVRE);
-            mapa[i][j].set_p_pai(NULL);
-            mapa[i][j].set_pai(NULL);
+            mapa[i][j].set_p_pai(nullptr);
+            mapa[i][j].set_pai(nullptr);
             if (i-1 > 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][ j ], 0);
             if (i-1 > 0 && j+1 < largura)
