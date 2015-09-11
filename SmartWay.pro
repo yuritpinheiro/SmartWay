@@ -25,3 +25,5 @@ FORMS    += smartway.ui
 RESOURCES += \
     smartway.qrc
 
+
+QMAKE_CXXFLAGS += -std=c++0x
