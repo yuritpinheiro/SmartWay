@@ -193,6 +193,7 @@ void SmartWay::criar_mapa(int altura, int largura)
 {
     ui->tabelaMapa->setRowCount(altura);
     ui->tabelaMapa->setColumnCount(largura);
+
     QTableWidgetItem *item;
     for (int i = 0; i < altura; i++)
     {
