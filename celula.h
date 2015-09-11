@@ -28,10 +28,22 @@ public:
     Celula *get_p_pai();
     void set_p_pai(Celula *p_pai);
 
+    Celula *get_vizinho(int i);
+    void set_vizinho(Celula *vizinho, int i);
+
 private:
     int f, g, h;
     int tipo;
     Celula *pai, *p_pai;
+    Celula *vizinhos[8];
+
+    /*
+     ___________
+    |_8_|_1_|_2_|
+    |_7_|_x_|_3_|
+    |_6_|_5_|_4_|
+    */
+
 };
 
 #endif // CELULA_H

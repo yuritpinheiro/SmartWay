@@ -72,3 +72,13 @@ void Celula::set_p_pai(Celula * p_pai)
 {
     this->p_pai = p_pai;
 }
+
+Celula * Celula::get_vizinho(int i)
+{
+    return this->vizinhos[i];
+}
+
+void Celula::set_vizinho(Celula * vizinho, int i)
+{
+    this->vizinhos[i] = vizinho;
+}
