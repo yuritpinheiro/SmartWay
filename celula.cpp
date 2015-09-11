@@ -8,34 +8,34 @@ Celula::Celula()
     this->tipo = LIVRE;
 }
 
-int Celula::get_f()
+double Celula::get_f()
 {
     return this->f;
 }
 
-void Celula::set_f(int f)
+void Celula::set_f(double f)
 {
     this->f = f;
 }
 
 
-int Celula::get_g()
+double Celula::get_g()
 {
     return this->g;
 }
 
-void Celula::set_g(int g)
+void Celula::set_g(double g)
 {
     this->g = g;
 }
 
 
-int Celula::get_h()
+double Celula::get_h()
 {
     return this->h;
 }
 
-void Celula::set_h(int h)
+void Celula::set_h(double h)
 {
     this->h = h;
 }
@@ -63,7 +63,7 @@ void Celula::set_pai(Celula * pai)
 }
 
 
-Celula * Celula::get_p_pai()
+Celula* Celula::get_p_pai()
 {
     return this->p_pai;
 }

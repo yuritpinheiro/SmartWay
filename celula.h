@@ -10,14 +10,14 @@ class Celula
 {
 public:
     Celula();
-    int get_f();
-    void set_f(int f);
+    double get_f();
+    void set_f(double f);
 
-    int get_g();
-    void set_g(int g);
+    double get_g();
+    void set_g(double g);
 
-    int get_h();
-    void set_h(int h);
+    double get_h();
+    void set_h(double h);
 
     int get_tipo();
     void set_tipo(int tipo);
@@ -32,7 +32,7 @@ public:
     void set_vizinho(Celula *vizinho, int i);
 
 private:
-    int f, g, h;
+    double f, g, h;
     int tipo;
     Celula *pai, *p_pai;
     Celula *vizinhos[8];
