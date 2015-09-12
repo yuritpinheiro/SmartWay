@@ -6,6 +6,8 @@
 #define OBSTACULO 2
 #define LIVRE 3
 
+#include <QTableWidgetItem>
+
 class Celula
 {
 public:
@@ -31,11 +33,15 @@ public:
     Celula *get_vizinho(int i);
     void set_vizinho(Celula *vizinho, int i);
 
+    QTableWidgetItem *get_item();
+    void set_item(QTableWidgetItem *item);
+
 private:
     double f, g, h;
     int tipo;
     Celula *pai, *p_pai;
     Celula *vizinhos[8];
+    QTableWidgetItem *item;
 
     /*
      ___________

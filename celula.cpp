@@ -82,3 +82,13 @@ void Celula::set_vizinho(Celula * vizinho, int i)
 {
     this->vizinhos[i] = vizinho;
 }
+
+QTableWidgetItem *Celula::get_item()
+{
+    return this->item;
+}
+
+void Celula::set_item(QTableWidgetItem *item)
+{
+    this->item = item;
+}
