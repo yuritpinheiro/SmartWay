@@ -215,6 +215,11 @@ void SmartWay::criar_mapa(int altura, int largura)
     ui->tabelaMapa->setRowCount(altura);
     ui->tabelaMapa->setColumnCount(largura);
 
+    mapa = new Celula*[altura];
+
+    for (int i = 0; i < altura; i++)
+        mapa[i] = new Celula[largura];
+
     QTableWidgetItem *item;
     for (int i = 0; i < altura; i++)
     {
@@ -222,21 +227,11 @@ void SmartWay::criar_mapa(int altura, int largura)
         {
             item = new QTableWidgetItem();
             ui->tabelaMapa->setItem(i, j, item);
-        }
-    }
 
-    mapa = new Celula*[altura];
-
-    for (int i = 0; i < altura; i++)
-        mapa[i] = new Celula[largura];
-
-    for (int i = 0; i < altura; i++)
-    {
-        for (int j = 0; j < largura; j++)
-        {
             mapa[i][j].set_tipo(LIVRE);
             mapa[i][j].set_p_pai(nullptr);
             mapa[i][j].set_pai(nullptr);
+            mapa[i][j].set_item(item);
             if (i-1 >= 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][ j ], 0);
             else
