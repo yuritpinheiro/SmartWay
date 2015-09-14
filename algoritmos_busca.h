@@ -1,54 +1,62 @@
 #ifndef ALGORITMOS_BUSCA
 #define ALGORITMOS_BUSCA
 #include <celula.h>
+#include <queue>
+#include <vector>
 
 /* Algoritmo A* */
 
+using namespace std;
 
+void a_estrela(Celula *partida, double h, double v, double d){
+    priority_queue<Celula*, vector<Celula*>> fila;
+
+    Celula *aux = partida;
+    double custo_horizontal = h; //recebo da interface
+    double custo_vertical = v;
+    double custo_diagonal = d;
+    double g = 0, f;
+
+
+    aux->set_g(0);
+    while(aux->get_tipo()!= CHEGADA){
+
+        for(int i = 0; i < 8; i++){
+            if( aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() == LIVRE){
+
+                    if(i == 1 || i == 5){
+                        g = custo_vertical + aux->get_g();
+                    }else if(i == 3 || i == 7){
+                        g = custo_horizontal + aux->get_g();;
+                    }else{
+                        g = custo_diagonal + aux->get_g();;
+                    }
+
+                    f = g + aux->get_vizinho(i)->get_h();
+
+                    if(aux->get_vizinho(i)->get_pai()== nullptr || (aux->get_vizinho(i)->get_pai()!= nullptr && aux->get_vizinho(i)->get_g() < g)){
+                        aux->get_vizinho(i)->set_pai(aux);
+                        aux->get_vizinho(i)->set_g(g);
+                        aux->get_vizinho(i)->set_f(f);
+                        fila.push(aux->get_vizinho(i));
+                    }
+            }
+        }
+
+        aux = fila.top();
+        fila.pop();
+    }
+
+        //priotity_queue.pop();
+
+}
+        //teste dos irmãos ??
 
 /* --------------------- */
 
 /* Busca em profundidade */
 
-void definir_rota(Celula *celula);
-void busca_profundidade(Celula *partida, Celula *chegada, double peso_v, double peso_h, double peso_d);
 
-void definir_rota(Celula *celula)
-{
-    if (celula->get_p_pai() != celula)
-    {
-        celula->set_pai(celula->get_p_pai());
-        definir_rota(celula->get_pai());
-    }
-}
-
-void busca_profundidade(Celula *partida, Celula *chegada, double peso_v, double peso_h, double peso_d)
-{
-    if (partida == chegada)
-    {
-        if (partida->get_g() < partida->get_h())
-        {
-            partida->set_h(partida->get_g());
-            definir_rota(partida);
-        }
-        // Definir melhor rota
-
-    } else {
-        for (int i = 0; i < 8; i++)
-        {
-            if (partida->get_vizinho(i) != nullptr
-                    && partida->get_vizinho(i)->get_p_pai() == nullptr
-                    && partida->get_vizinho(i)->get_tipo() != OBSTACULO)
-            {
-                partida->get_vizinho(i)->set_g(partida->get_g() + (i % 2 == 0 ? (i % 4 == 0 ? peso_v : peso_h) : peso_d));
-                partida->get_vizinho(i)->set_p_pai(partida);
-                busca_profundidade(partida->get_vizinho(i), chegada, peso_v, peso_h, peso_d);
-                partida->get_vizinho(i)->set_p_pai(nullptr);
-                partida->get_vizinho(i)->set_g(0);
-            }
-        }
-    }
-}
 
 /* --------------------- */
 
