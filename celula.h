@@ -36,8 +36,10 @@ public:
     QTableWidgetItem *get_item();
     void set_item(QTableWidgetItem *item);
 
-private:
     double f, g, h;
+
+private:
+
     int tipo;
     Celula *pai, *p_pai;
     Celula *vizinhos[8];

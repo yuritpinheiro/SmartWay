@@ -191,11 +191,11 @@ void SmartWay::on_comboAlgoritmo_currentIndexChanged(int index)
 void SmartWay::on_btnCalcular_clicked()
 {
     chegada->set_h(DBL_MAX);
-    if (ui->comboAlgoritmo->currentIndex() == 1){
-        busca_profundidade(partida, chegada,
-                           ui->txtPesoVertical->text().toDouble(),
-                           ui->txtPesoHorizontal->text().toDouble(),
-                           ui->txtPesoDiagonal->text().toDouble());
+    if (ui->comboAlgoritmo->currentIndex() == 0){
+        a_estrela(partida,
+                  ui->txtPesoHorizontal->text().toDouble(),
+                  ui->txtPesoVertical->text().toDouble(),
+                  ui->txtPesoDiagonal->text().toDouble());
     }
 }
 

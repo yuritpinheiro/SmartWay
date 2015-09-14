@@ -8,8 +8,16 @@
 
 using namespace std;
 
+struct avaliar_caminho
+{
+    bool operator()(const Celula& a,const Celula& b) const
+    {
+        return a.f < b.f;
+    }
+};
+
 void a_estrela(Celula *partida, double h, double v, double d){
-    priority_queue<Celula*, vector<Celula*>> fila;
+    priority_queue<Celula, vector<Celula>, avaliar_caminho> fila;
 
     Celula *aux = partida;
     double custo_horizontal = h; //recebo da interface
@@ -38,12 +46,12 @@ void a_estrela(Celula *partida, double h, double v, double d){
                         aux->get_vizinho(i)->set_pai(aux);
                         aux->get_vizinho(i)->set_g(g);
                         aux->get_vizinho(i)->set_f(f);
-                        fila.push(aux->get_vizinho(i));
+                        //fila.push(aux->get_vizinho(i));
                     }
             }
         }
 
-        aux = fila.top();
+        //aux = fila.top();
         fila.pop();
     }
 
