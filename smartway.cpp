@@ -203,6 +203,17 @@ void SmartWay::on_btnCalcular_clicked()
                   ui->txtPesoVertical->text().toDouble(),
                   ui->txtPesoDiagonal->text().toDouble());
     }
+
+    if (ui->comboAlgoritmo->currentIndex() == 1)
+    {
+        chegada->set_h(DBL_MAX);
+        busca_prof(partida, chegada,
+                   ui->txtPesoVertical->text().toDouble(),
+                   ui->txtPesoHorizontal->text().toDouble(),
+                   ui->txtPesoDiagonal->text().toDouble());
+
+        marcar_rota(chegada);
+    }
 }
 
 void SmartWay::apagar_mapa(int altura)
@@ -238,12 +249,12 @@ void SmartWay::criar_mapa(int altura, int largura)
             mapa[i][j].set_p_pai(nullptr);
             mapa[i][j].set_pai(nullptr);
             mapa[i][j].set_item(item);
-            if (i-1 >= 0)
+            if (i > 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][ j ], 0);
             else
                 mapa[i][j].set_vizinho(nullptr, 0);
 
-            if (i-1 >= 0 && j+1 < largura)
+            if (i > 0 && j+1 < largura)
                 mapa[i][j].set_vizinho(&mapa[i-1][j+1], 1);
             else
                 mapa[i][j].set_vizinho(nullptr, 1);
@@ -263,17 +274,17 @@ void SmartWay::criar_mapa(int altura, int largura)
             else
                 mapa[i][j].set_vizinho(nullptr, 4);
 
-            if (i+1 < altura && j-1 >= 0)
+            if (i+1 < altura && j > 0)
                 mapa[i][j].set_vizinho(&mapa[i+1][j-1], 5);
             else
                 mapa[i][j].set_vizinho(nullptr, 5);
 
-            if (j-1 >= 0)
+            if (j > 0)
                 mapa[i][j].set_vizinho(&mapa[ i ][j-1], 6);
             else
                 mapa[i][j].set_vizinho(nullptr, 6);
 
-            if (i-1 >= 0 && j-1 >= 0)
+            if (i > 0 && j > 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][j-1], 7);
             else
                 mapa[i][j].set_vizinho(nullptr, 7);
