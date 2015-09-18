@@ -16,6 +16,7 @@ double Celula::get_f() const
 void Celula::set_f(double f)
 {
     this->f = f;
+
 }
 
 

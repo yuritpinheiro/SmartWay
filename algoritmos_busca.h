@@ -5,7 +5,10 @@
 #include <vector>
 
 /* Algoritmo A* */
+void marcar_rota(Celula *celula);
 
+void definir_rota(Celula *celula)
+;
 void calcular_heuristica(Celula ** mapa, int altura, int largura, Celula* chegada)
 {
     for (int i = 0; i < altura; i++)
@@ -27,10 +30,11 @@ void a_estrela(Celula *partida, double h, double v, double d){
     double g, f;
 
     aux->set_g(0);
+    //int a = -2;
     while(aux->get_tipo() != CHEGADA){
 
         for(int i = 0; i < 8; i++){
-            if( aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() == LIVRE){
+            if( aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() != OBSTACULO){
 
                 if(i == 0 || i == 4){
                     g = custo_vertical + aux->get_g();
@@ -47,13 +51,21 @@ void a_estrela(Celula *partida, double h, double v, double d){
                     aux->get_vizinho(i)->set_g(g);
                     aux->get_vizinho(i)->set_f(f);
                     fila.push(aux->get_vizinho(i));
+
                 }
             }
         }
 
+        //a = fila.top()->get_tipo();
         aux = fila.top();
+
+
         fila.pop();
     }
+
+   marcar_rota(aux);
+
+
 }
 
 /* --------------------- */

@@ -216,6 +216,7 @@ void SmartWay::on_btnCalcular_clicked()
 
         marcar_rota(chegada);
     }
+    marcar_rota(chegada);
 }
 
 void SmartWay::apagar_mapa(int altura)
