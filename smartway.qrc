@@ -15,5 +15,15 @@
         <file>imagens/obs_7.png</file>
         <file>imagens/obs_8.png</file>
         <file>imagens/obs_9.png</file>
+        <file>imagens/visto.png</file>
+        <file>imagens/visitado.png</file>
+        <file>imagens/so.png</file>
+        <file>imagens/sd.png</file>
+        <file>imagens/s.png</file>
+        <file>imagens/o.png</file>
+        <file>imagens/no.png</file>
+        <file>imagens/nd.png</file>
+        <file>imagens/n.png</file>
+        <file>imagens/l.png</file>
     </qresource>
 </RCC>
