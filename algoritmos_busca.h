@@ -12,8 +12,7 @@ void calcular_heuristica(Celula ** mapa, int altura, int largura, Celula* chegad
     {
         for (int j = 0; j < largura; j++)
         {
-            if (mapa[i][j].get_tipo() != PARTIDA || mapa[i][j].get_tipo() != CHEGADA)
-                mapa[i][j].set_h(abs(chegada->get_x() - i) + abs(chegada->get_y() - j));
+            mapa[i][j].set_h(abs(chegada->get_x() - i) + abs(chegada->get_y() - j));
         }
     }
 }
@@ -25,17 +24,17 @@ void a_estrela(Celula *partida, double h, double v, double d){
     double custo_horizontal = h; //recebo da interface
     double custo_vertical = v;
     double custo_diagonal = d;
-    double g = 0, f;
+    double g, f;
 
     aux->set_g(0);
-    while(aux->get_tipo()!= CHEGADA){
+    while(aux->get_tipo() != CHEGADA){
 
         for(int i = 0; i < 8; i++){
             if( aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() == LIVRE){
 
-                if(i == 1 || i == 5){
+                if(i == 0 || i == 4){
                     g = custo_vertical + aux->get_g();
-                }else if(i == 3 || i == 7){
+                }else if(i == 2 || i == 6){
                     g = custo_horizontal + aux->get_g();;
                 }else{
                     g = custo_diagonal + aux->get_g();;
@@ -43,16 +42,16 @@ void a_estrela(Celula *partida, double h, double v, double d){
 
                 f = g + aux->get_vizinho(i)->get_h();
 
-                if(aux->get_vizinho(i)->get_pai()== nullptr || (aux->get_vizinho(i)->get_pai()!= nullptr && aux->get_vizinho(i)->get_g() < g)){
+                if(aux->get_vizinho(i)->get_pai()== nullptr || (aux->get_vizinho(i)->get_pai()!= nullptr && aux->get_vizinho(i)->get_g() > g)){
                     aux->get_vizinho(i)->set_pai(aux);
                     aux->get_vizinho(i)->set_g(g);
                     aux->get_vizinho(i)->set_f(f);
-                    //fila.push(aux->get_vizinho(i));
+                    fila.push(aux->get_vizinho(i));
                 }
             }
         }
 
-        //aux = fila.top();
+        aux = fila.top();
         fila.pop();
     }
 }

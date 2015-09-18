@@ -52,7 +52,7 @@ void Celula::set_tipo(int tipo)
 
 int Celula::get_x()
 {
-    return this->get_x();
+    return this->x;
 }
 
 void Celula::set_x(int x)
@@ -62,7 +62,7 @@ void Celula::set_x(int x)
 
 int Celula::get_y()
 {
-    return this->get_y();
+    return this->y;
 }
 
 void Celula::set_y(int y)

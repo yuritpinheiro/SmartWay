@@ -65,7 +65,7 @@ struct avaliar_custo : public std::binary_function<Celula*, Celula*, bool>
 {
     bool operator()(const Celula* lhs, const Celula* rhs) const
     {
-        return lhs->get_f() < rhs->get_f();
+        return lhs->get_f() > rhs->get_f();
     }
 };
 
