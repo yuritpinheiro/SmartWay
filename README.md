@@ -11,12 +11,13 @@
       - [x] Implementar teste de obstáculo.
    - [x] Bloquear e desbloquear botão "Calcular Rota" enquanto faltam parâmetros.
    - [x] Definir comportamento do checkBox "Mostrar Pesos"
-   - [ ] Chamar Algoritmos.
+   - [x] Chamar Algoritmos.
    - [ ] ~~Imprimir Logs.~~
-   - [ ] Desenhar rota encontrada.
+   - [x] Desenhar rota encontrada.
+   	 - [ ] Marcar com ícones
    
 2. Algoritmos
-   - [ ] Algoritmo A*.
-   - [ ] Busca em profundidade.
+   - [x] Algoritmo A*.
+   - [x] Busca em profundidade.
    - [ ] ~~Gerar Log.~~
    - [ ] Gerar caminho para Rute.
