@@ -65,10 +65,6 @@ private:
 
     QString getObstaculo();
 
-    int partida_x, partida_y;
-    int chegada_x, chegada_y;
-
-
     Celula ** mapa;
 
     Celula *partida, *chegada;
