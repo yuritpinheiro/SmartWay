@@ -4,11 +4,81 @@
 #include <queue>
 #include <vector>
 
-/* Algoritmo A* */
-void marcar_rota(Celula *celula);
-
 void definir_rota(Celula *celula)
-;
+{
+    if (celula->get_p_pai() != celula)
+    {
+        celula->set_pai(celula->get_p_pai());
+        definir_rota(celula->get_pai());
+    }
+}
+
+
+void marcar_rota(Celula *celula)
+{
+    QIcon icon;
+    if (celula->get_tipo() != PARTIDA)
+    {
+        Celula *p = celula->get_pai();
+        if (p->get_x() > celula->get_x())
+        {
+            if (p->get_y() > celula->get_y())
+            {
+                icon.addFile(QStringLiteral(":/imagens/no.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+            else if (p->get_y() < celula->get_y())
+            {
+                icon.addFile(QStringLiteral(":/imagens/so.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+            else
+            {
+                icon.addFile(QStringLiteral(":/imagens/o.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+        }
+        else if (p->get_x() < celula->get_x())
+        {
+            if (p->get_y() > celula->get_y())
+            {
+                icon.addFile(QStringLiteral(":/imagens/nd.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+            else if (p->get_y() < celula->get_y())
+            {
+                icon.addFile(QStringLiteral(":/imagens/sd.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+            else
+            {
+                icon.addFile(QStringLiteral(":/imagens/l.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+        }
+        else
+        {
+            if (p->get_y() > celula->get_y())
+            {
+                icon.addFile(QStringLiteral(":/imagens/n.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+            else
+            {
+                icon.addFile(QStringLiteral(":/imagens/s.png"), QSize(), QIcon::Normal, QIcon::Off);
+            }
+        }
+
+        celula->get_pai()->get_item()->setIcon(icon);
+        if (celula->get_tipo() == CHEGADA)
+        {
+            icon.addFile(QStringLiteral(":/imagens/chegada_2.png"), QSize(), QIcon::Normal, QIcon::Off);
+            celula->get_item()->setIcon(icon);
+        }
+        marcar_rota(celula->get_pai());
+    }
+    else
+    {
+        icon.addFile(QStringLiteral(":/imagens/largada_2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        celula->get_item()->setIcon(icon);
+    }
+}
+
+/* Algoritmo A* */
+
 void calcular_heuristica(Celula ** mapa, int altura, int largura, Celula* chegada)
 {
     for (int i = 0; i < altura; i++)
@@ -63,33 +133,12 @@ void a_estrela(Celula *partida, double h, double v, double d){
         fila.pop();
     }
 
-   marcar_rota(aux);
-
-
+   marcar_rota(aux->get_pai());
 }
 
 /* --------------------- */
 
 /* Busca em profundidade */
-
-void definir_rota(Celula *celula)
-{
-    if (celula->get_p_pai() != celula)
-    {
-        celula->set_pai(celula->get_p_pai());
-        definir_rota(celula->get_pai());
-    }
-}
-
-
-void marcar_rota(Celula *celula)
-{
-    if (celula->get_p_pai() != celula)
-    {
-        celula->get_item()->setBackgroundColor(Qt::green);
-        marcar_rota(celula->get_pai());
-    }
-}
 
 void busca_prof(Celula *partida, Celula *chegada, int peso_h, int peso_v, int peso_d)
 {

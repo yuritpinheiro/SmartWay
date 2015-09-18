@@ -169,8 +169,8 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
         else if (ui->radioChegada->isChecked() && !chegada_definida)
         {
             chegada = &mapa[item->row()][item->column()];
-            chegada->set_x(item->row());
-            chegada->set_y(item->column());
+            chegada->set_x(item->column());
+            chegada->set_y(item->row());
             mapa[item->row()][item->column()].set_tipo(CHEGADA);
             icon.addFile(QStringLiteral(":/imagens/chegada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
             chegada_definida = true;
@@ -214,7 +214,7 @@ void SmartWay::on_btnCalcular_clicked()
                    ui->txtPesoHorizontal->text().toDouble(),
                    ui->txtPesoDiagonal->text().toDouble());
 
-        marcar_rota(chegada);
+        marcar_rota(chegada->get_pai());
     }
     marcar_rota(chegada);
 }
@@ -252,6 +252,9 @@ void SmartWay::criar_mapa(int altura, int largura)
             mapa[i][j].set_p_pai(nullptr);
             mapa[i][j].set_pai(nullptr);
             mapa[i][j].set_item(item);
+            mapa[i][j].set_x(j);
+            mapa[i][j].set_y(i);
+
             if (i > 0)
                 mapa[i][j].set_vizinho(&mapa[i-1][ j ], 0);
             else
