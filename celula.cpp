@@ -8,7 +8,7 @@ Celula::Celula()
     this->tipo = LIVRE;
 }
 
-double Celula::get_f()
+double Celula::get_f() const
 {
     return this->f;
 }
@@ -40,7 +40,6 @@ void Celula::set_h(double h)
     this->h = h;
 }
 
-
 int Celula::get_tipo()
 {
     return this->tipo;
@@ -51,6 +50,25 @@ void Celula::set_tipo(int tipo)
     this->tipo = tipo;
 }
 
+int Celula::get_x()
+{
+    return this->get_x();
+}
+
+void Celula::set_x(int x)
+{
+    this->x = x;
+}
+
+int Celula::get_y()
+{
+    return this->get_y();
+}
+
+void Celula::set_y(int y)
+{
+    this->y = y;
+}
 
 Celula * Celula::get_pai()
 {
@@ -61,7 +79,6 @@ void Celula::set_pai(Celula * pai)
 {
     this->pai = pai;
 }
-
 
 Celula* Celula::get_p_pai()
 {

@@ -7,12 +7,13 @@
 #define LIVRE 3
 
 #include <QTableWidgetItem>
+#include <functional>
 
 class Celula
 {
 public:
     Celula();
-    double get_f();
+    double get_f() const;
     void set_f(double f);
 
     double get_g();
@@ -23,6 +24,12 @@ public:
 
     int get_tipo();
     void set_tipo(int tipo);
+
+    int get_x();
+    void set_x(int x);
+
+    int get_y();
+    void set_y(int y);
 
     Celula *get_pai();
     void set_pai(Celula *pai);
@@ -36,11 +43,11 @@ public:
     QTableWidgetItem *get_item();
     void set_item(QTableWidgetItem *item);
 
-    double f, g, h;
-
 private:
 
     int tipo;
+    int x, y;
+    double f, g, h;
     Celula *pai, *p_pai;
     Celula *vizinhos[8];
     QTableWidgetItem *item;
@@ -52,6 +59,14 @@ private:
     |_5_|_4_|_3_|
     */
 
+};
+
+struct avaliar_custo : public std::binary_function<Celula*, Celula*, bool>
+{
+    bool operator()(const Celula* lhs, const Celula* rhs) const
+    {
+        return lhs->get_f() < rhs->get_f();
+    }
 };
 
 #endif // CELULA_H
