@@ -66,13 +66,13 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(false);
         ui->txtPesoVertical->setEnabled(false);
 
-        partida_x = -1; partida_y = -1;
+        partida = nullptr;
         partida_definida = false;
 
-        chegada_x = -1; chegada_y = -1;
+        chegada = nullptr;
         chegada_definida = false;
 
-        SmartWay::apagar_mapa(ui->txtAltura->text().toInt());
+        apagar_mapa(ui->txtAltura->text().toInt());
     } else {
         mapa_definido = true;
 
@@ -91,7 +91,9 @@ void SmartWay::on_btnDefinirMapa_clicked()
         ui->txtPesoHorizontal->setEnabled(true);
         ui->txtPesoVertical->setEnabled(true);
 
-        SmartWay::criar_mapa(ui->txtAltura->text().toInt(), ui->txtLargura->text().toInt());
+        ui->btnCalcular->setEnabled(false);
+
+        criar_mapa(ui->txtAltura->text().toInt(), ui->txtLargura->text().toInt());
     }
 }
 
@@ -190,8 +192,12 @@ void SmartWay::on_comboAlgoritmo_currentIndexChanged(int index)
 
 void SmartWay::on_btnCalcular_clicked()
 {
-    chegada->set_h(DBL_MAX);
     if (ui->comboAlgoritmo->currentIndex() == 0){
+        chegada->set_h(0);
+        calcular_heuristica(mapa,
+                            ui->txtAltura->text().toInt(),
+                            ui->txtLargura->text().toInt(),
+                            chegada);
         a_estrela(partida,
                   ui->txtPesoHorizontal->text().toDouble(),
                   ui->txtPesoVertical->text().toDouble(),
