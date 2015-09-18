@@ -169,6 +169,8 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
         else if (ui->radioChegada->isChecked() && !chegada_definida)
         {
             chegada = &mapa[item->row()][item->column()];
+            chegada->set_x(item->row());
+            chegada->set_y(item->column());
             mapa[item->row()][item->column()].set_tipo(CHEGADA);
             icon.addFile(QStringLiteral(":/imagens/chegada_1.png"), QSize(), QIcon::Normal, QIcon::Off);
             chegada_definida = true;
