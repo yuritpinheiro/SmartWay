@@ -204,6 +204,8 @@ void SmartWay::on_btnCalcular_clicked()
                   ui->txtPesoHorizontal->text().toDouble(),
                   ui->txtPesoVertical->text().toDouble(),
                   ui->txtPesoDiagonal->text().toDouble());
+        if(chegada->get_pai()!= nullptr)
+            marcar_rota(chegada->get_pai());
     }
 
     if (ui->comboAlgoritmo->currentIndex() == 1)
@@ -214,9 +216,10 @@ void SmartWay::on_btnCalcular_clicked()
                    ui->txtPesoHorizontal->text().toDouble(),
                    ui->txtPesoDiagonal->text().toDouble());
 
-        marcar_rota(chegada->get_pai());
+        if(chegada->get_pai()!= nullptr)
+            marcar_rota(chegada->get_pai());
     }
-    marcar_rota(chegada);
+
 }
 
 void SmartWay::apagar_mapa(int altura)

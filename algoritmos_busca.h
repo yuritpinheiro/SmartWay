@@ -98,42 +98,59 @@ void a_estrela(Celula *partida, double h, double v, double d){
     double custo_vertical = v;
     double custo_diagonal = d;
     double g, f;
+    QIcon visto;
+    QIcon visitado;
 
     aux->set_g(0);
     //int a = -2;
-    while(aux->get_tipo() != CHEGADA){
 
+
+    visitado.addFile(QStringLiteral(":/imagens/visitado.png"),QSize(), QIcon::Normal, QIcon::Off);
+    visto.addFile(QStringLiteral(":/imagens/visto.png"),QSize(), QIcon::Normal, QIcon::Off);
+
+    do{
+        aux->get_item()->setIcon(visitado);
         for(int i = 0; i < 8; i++){
             if( aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() != OBSTACULO){
 
                 if(i == 0 || i == 4){
                     g = custo_vertical + aux->get_g();
+
                 }else if(i == 2 || i == 6){
-                    g = custo_horizontal + aux->get_g();;
+                    g = custo_horizontal + aux->get_g();
                 }else{
-                    g = custo_diagonal + aux->get_g();;
+                    g = custo_diagonal + aux->get_g();
                 }
 
                 f = g + aux->get_vizinho(i)->get_h();
+                aux->get_vizinho(i)->get_item()->setIcon(visto);
 
                 if(aux->get_vizinho(i)->get_pai()== nullptr || (aux->get_vizinho(i)->get_pai()!= nullptr && aux->get_vizinho(i)->get_g() > g)){
                     aux->get_vizinho(i)->set_pai(aux);
                     aux->get_vizinho(i)->set_g(g);
                     aux->get_vizinho(i)->set_f(f);
                     fila.push(aux->get_vizinho(i));
-
                 }
             }
+
         }
 
         //a = fila.top()->get_tipo();
         aux = fila.top();
+        aux->get_item()->setIcon(visitado);
 
-
-        fila.pop();
+        if(!fila.empty())
+            fila.pop();
     }
 
-   marcar_rota(aux->get_pai());
+    while(aux->get_tipo() != CHEGADA && !fila.empty());
+
+    marcar_rota(aux);
+
+
+
+
+
 }
 
 /* --------------------- */
