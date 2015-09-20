@@ -63,6 +63,7 @@ void marcar_rota(Celula *celula)
         }
 
         celula->get_pai()->get_item()->setIcon(icon);
+        celula->get_pai()->get_item()->setBackgroundColor(Qt::green);
         if (celula->get_tipo() == CHEGADA)
         {
             icon.addFile(QStringLiteral(":/imagens/chegada_2.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -79,13 +80,19 @@ void marcar_rota(Celula *celula)
 
 /* Algoritmo A* */
 
-void calcular_heuristica(Celula ** mapa, int altura, int largura, Celula* chegada)
+void calcular_heuristica(Celula ** mapa,
+                         int altura,
+                         int largura,
+                         Celula* chegada,
+                         double peso_v,
+                         double peso_h)
 {
     for (int i = 0; i < altura; i++)
     {
         for (int j = 0; j < largura; j++)
         {
-            mapa[i][j].set_h(abs(chegada->get_x() - i) + abs(chegada->get_y() - j));
+            mapa[i][j].set_h(peso_v*abs(chegada->get_y() - i) + peso_h*abs(chegada->get_x() - j));
+            //mapa[i][j].get_item()->setText(QString("%1").arg(mapa[i][j].get_h()));
         }
     }
 }
@@ -109,9 +116,9 @@ void a_estrela(Celula *partida, double h, double v, double d){
     visto.addFile(QStringLiteral(":/imagens/visto.png"),QSize(), QIcon::Normal, QIcon::Off);
 
     do{
-        aux->get_item()->setIcon(visitado);
+        //aux->get_item()->setIcon(visitado);
         for(int i = 0; i < 8; i++){
-            if( aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() != OBSTACULO){
+            if(aux->get_vizinho(i) != nullptr && aux->get_vizinho(i)->get_tipo() != OBSTACULO){
 
                 if(i == 0 || i == 4){
                     g = custo_vertical + aux->get_g();
@@ -123,9 +130,9 @@ void a_estrela(Celula *partida, double h, double v, double d){
                 }
 
                 f = g + aux->get_vizinho(i)->get_h();
-                aux->get_vizinho(i)->get_item()->setIcon(visto);
-
-                if(aux->get_vizinho(i)->get_pai()== nullptr || (aux->get_vizinho(i)->get_pai()!= nullptr && aux->get_vizinho(i)->get_g() > g)){
+                if(aux->get_vizinho(i)->get_pai() == nullptr || (aux->get_vizinho(i)->get_pai()!= nullptr && aux->get_vizinho(i)->get_g() > g)){
+                    aux->get_vizinho(i)->get_item()->setIcon(visto);
+                    aux->get_vizinho(i)->get_item()->setBackgroundColor(Qt::darkCyan);
                     aux->get_vizinho(i)->set_pai(aux);
                     aux->get_vizinho(i)->set_g(g);
                     aux->get_vizinho(i)->set_f(f);
@@ -138,6 +145,7 @@ void a_estrela(Celula *partida, double h, double v, double d){
         //a = fila.top()->get_tipo();
         aux = fila.top();
         aux->get_item()->setIcon(visitado);
+        aux->get_item()->setBackgroundColor(Qt::darkGreen);
 
         if(!fila.empty())
             fila.pop();
@@ -146,11 +154,6 @@ void a_estrela(Celula *partida, double h, double v, double d){
     while(aux->get_tipo() != CHEGADA && !fila.empty());
 
     marcar_rota(aux);
-
-
-
-
-
 }
 
 /* --------------------- */

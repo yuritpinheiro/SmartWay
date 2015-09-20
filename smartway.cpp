@@ -199,7 +199,9 @@ void SmartWay::on_btnCalcular_clicked()
         calcular_heuristica(mapa,
                             ui->txtAltura->text().toInt(),
                             ui->txtLargura->text().toInt(),
-                            chegada);
+                            chegada,
+                            ui->txtPesoHorizontal->text().toDouble(),
+                            ui->txtPesoVertical->text().toDouble());
         a_estrela(partida,
                   ui->txtPesoHorizontal->text().toDouble(),
                   ui->txtPesoVertical->text().toDouble(),
