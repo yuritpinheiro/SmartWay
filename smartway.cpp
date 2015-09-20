@@ -152,6 +152,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
             mapa[item->row()][item->column()].set_tipo(LIVRE);
             icon.addFile(QStringLiteral(":"), QSize(), QIcon::Normal, QIcon::Off);
             item->setIcon(icon);
+            item->setBackgroundColor(Qt::white);
         }
     }
     else
@@ -181,6 +182,7 @@ void SmartWay::on_tabelaMapa_itemClicked(QTableWidgetItem *item)
             mapa[item->row()][item->column()].set_tipo(OBSTACULO);
             icon.addFile(getObstaculo(), QSize(), QIcon::Normal, QIcon::Off);
             item->setIcon(icon);
+            item->setBackgroundColor(Qt::lightGray);
         }
     }
     ui->btnCalcular->setEnabled(pronto_calculo());
@@ -206,8 +208,6 @@ void SmartWay::on_btnCalcular_clicked()
                   ui->txtPesoHorizontal->text().toDouble(),
                   ui->txtPesoVertical->text().toDouble(),
                   ui->txtPesoDiagonal->text().toDouble());
-        if(chegada->get_pai()!= nullptr)
-            marcar_rota(chegada->get_pai());
     }
 
     if (ui->comboAlgoritmo->currentIndex() == 1)

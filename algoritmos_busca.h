@@ -17,9 +17,9 @@ void definir_rota(Celula *celula)
 void marcar_rota(Celula *celula)
 {
     QIcon icon;
-    if (celula->get_tipo() != PARTIDA)
+    Celula *p = celula->get_pai();
+    if (p->get_tipo() != PARTIDA)
     {
-        Celula *p = celula->get_pai();
         if (p->get_x() > celula->get_x())
         {
             if (p->get_y() > celula->get_y())
@@ -68,13 +68,15 @@ void marcar_rota(Celula *celula)
         {
             icon.addFile(QStringLiteral(":/imagens/chegada_2.png"), QSize(), QIcon::Normal, QIcon::Off);
             celula->get_item()->setIcon(icon);
+            celula->get_item()->setBackgroundColor(Qt::green);
         }
         marcar_rota(celula->get_pai());
     }
     else
     {
         icon.addFile(QStringLiteral(":/imagens/largada_2.png"), QSize(), QIcon::Normal, QIcon::Off);
-        celula->get_item()->setIcon(icon);
+        p->get_item()->setIcon(icon);
+        p->get_item()->setBackgroundColor(Qt::green);
     }
 }
 
@@ -153,7 +155,10 @@ void a_estrela(Celula *partida, double h, double v, double d){
 
     while(aux->get_tipo() != CHEGADA && !fila.empty());
 
-    marcar_rota(aux);
+    if(aux->get_pai()!= nullptr)
+        marcar_rota(aux);
+    else
+        aux->get_item()->setText("X");
 }
 
 /* --------------------- */
