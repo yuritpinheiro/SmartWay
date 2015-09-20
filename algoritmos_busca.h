@@ -3,6 +3,9 @@
 #include <celula.h>
 #include <queue>
 #include <vector>
+#include <stack>
+
+using namespace std;
 
 void definir_rota(Celula *celula)
 {
@@ -12,7 +15,6 @@ void definir_rota(Celula *celula)
         definir_rota(celula->get_pai());
     }
 }
-
 
 void marcar_rota(Celula *celula)
 {
@@ -99,7 +101,7 @@ void calcular_heuristica(Celula ** mapa,
 }
 
 void a_estrela(Celula *partida, double h, double v, double d){
-    std::priority_queue<Celula*, std::vector<Celula*>, avaliar_custo> fila;
+    priority_queue<Celula*, std::vector<Celula*>, avaliar_custo> fila;
 
     Celula *aux;
     fila.push(partida);
@@ -157,6 +159,26 @@ void a_estrela(Celula *partida, double h, double v, double d){
 
 /* Busca em profundidade */
 
+/*
+void busca_prof_it(Celula *partida, int peso_h, int peso_v, int peso_d)
+{
+    stack<Celula*> pilha;
+
+    pilha.push(partida);
+    while (!pilha.empty())
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            Celula *v = partida->get_vizinho(i);
+            if (v != nullptr && v->get_tipo() != OBSTACULO && v->get_p_pai() == nullptr )
+            {
+                v->set_g(partida->get_g() + (i % 2 ? peso_d : (i % 4 ? peso_h : peso_v)));
+            }
+        }
+    }
+}
+*/
+
 void busca_prof(Celula *partida, Celula *chegada, int peso_h, int peso_v, int peso_d)
 {
     if (partida != chegada)
@@ -168,9 +190,11 @@ void busca_prof(Celula *partida, Celula *chegada, int peso_h, int peso_v, int pe
             {
                 v->set_g(partida->get_g() + (i % 2 ? peso_d : (i % 4 ? peso_h : peso_v)));
                 v->set_p_pai(partida);
+                v->get_item()->setBackgroundColor(Qt::darkGreen);
 
                 busca_prof(v, chegada, peso_h, peso_v, peso_d);
 
+                v->get_item()->setBackgroundColor(Qt::white);
                 v->set_g(0);
                 v->set_p_pai(nullptr);
             }

@@ -13,12 +13,12 @@
 	- [x] Definir comportamento do checkBox "Mostrar Pesos"
 	- [x] Chamar Algoritmos.
 	- [x] Desenhar rota encontrada.
-		- [ ] Pintar backgrounds
+		- [x] Pintar backgrounds
 	- [ ] Mostrar pesos
 
 2. Algoritmos
 	- [x] Algoritmo A*.
-		- [ ] Marcar com ícones
+		- [x] Marcar com ícones
 	- [x] Busca em profundidade.
 		- [x] Recursivo.
 		- [ ] Iterativo.

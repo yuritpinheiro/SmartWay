@@ -12,6 +12,7 @@
 #include <celula.h>
 #include <QGenericMatrix>
 #include <QString>
+#include <busca.h>
 
 namespace Ui {
 class SmartWay;
@@ -74,6 +75,7 @@ private:
     bool partida_definida;
     bool chegada_definida;
     bool mostrar_pesos;
+    bool rota_definida = false;
 
     int alg_select;
 };

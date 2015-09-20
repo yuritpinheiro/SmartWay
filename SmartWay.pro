@@ -14,11 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         smartway.cpp \
-    celula.cpp
+    celula.cpp \
+    busca.cpp
 
 HEADERS  += smartway.h \
     celula.h \
-    algoritmos_busca.h
+    algoritmos_busca.h \
+    busca.h
 
 FORMS    += smartway.ui
 
