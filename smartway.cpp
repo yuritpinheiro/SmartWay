@@ -196,7 +196,8 @@ void SmartWay::on_comboAlgoritmo_currentIndexChanged(int index)
 
 void SmartWay::on_btnCalcular_clicked()
 {
-    if (ui->comboAlgoritmo->currentIndex() == 0){
+    if (ui->comboAlgoritmo->currentIndex() == 0)
+    {
         chegada->set_h(0);
         calcular_heuristica(mapa,
                             ui->txtAltura->text().toInt(),
@@ -208,6 +209,9 @@ void SmartWay::on_btnCalcular_clicked()
                   ui->txtPesoHorizontal->text().toDouble(),
                   ui->txtPesoVertical->text().toDouble(),
                   ui->txtPesoDiagonal->text().toDouble());
+
+        if(chegada->get_pai() != nullptr)
+            marcar_rota(chegada);
     }
 
     if (ui->comboAlgoritmo->currentIndex() == 1)
@@ -218,8 +222,8 @@ void SmartWay::on_btnCalcular_clicked()
                    ui->txtPesoHorizontal->text().toDouble(),
                    ui->txtPesoDiagonal->text().toDouble());
 
-        if(chegada->get_pai()!= nullptr)
-            marcar_rota(chegada->get_pai());
+        if(chegada->get_pai() != nullptr)
+            marcar_rota(chegada);
     }
 
 }
