@@ -10,16 +10,13 @@
 	- [x] Desmarcar mapa.
 		- [x] Implementar teste de obstáculo.
 	- [x] Bloquear e desbloquear botão "Calcular Rota" enquanto faltam parâmetros.
-	- [x] Definir comportamento do checkBox "Mostrar Pesos"
 	- [x] Chamar Algoritmos.
 	- [x] Desenhar rota encontrada.
-		- [x] Pintar backgrounds
-	- [ ] Mostrar pesos
+		- [x] Pintar backgrounds.
 
 2. Algoritmos
 	- [x] Algoritmo A*.
 		- [x] Marcar com ícones
 	- [x] Busca em profundidade.
 		- [x] Recursivo.
-		- [ ] Iterativo.
 	- [ ] Gerar caminho para Rute.
